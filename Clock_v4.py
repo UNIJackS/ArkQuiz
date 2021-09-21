@@ -1,11 +1,10 @@
 import time
 from threading import Thread
 
+#sets the answer to none so that the check function
 answer = None
 
-
 def check():
-    time.sleep(2)
     if answer is not None:
         return
     timer = 0
@@ -14,9 +13,9 @@ def check():
         timer += 1
 
         if timer == 10 and answer is None:
-            print("20 seconds Left")
+            print("\n20 seconds Left")
         if timer == 20 and answer is None:
-            print("10 seconds left")
+            print("\n10 seconds left")
 
 
 Thread(target=check).start()

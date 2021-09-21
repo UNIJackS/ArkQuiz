@@ -16,5 +16,4 @@ while timer < 29:
     if timer > 20:
         count_down -= 1
         print(count_down)
-print("times up")
-print("what is your answer ?")
+
