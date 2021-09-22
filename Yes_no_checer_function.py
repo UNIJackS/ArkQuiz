@@ -22,9 +22,9 @@ def yes_no_checker(question):
             else:
                 print("yes or no are the only valid answers, you must enter yes or no")
 
+
 loop_1 = 0
 while loop_1 < 10:
     test_variable = yes_no_checker("yes or no ? ")
     print(test_variable)
     loop_1 += 1
-
