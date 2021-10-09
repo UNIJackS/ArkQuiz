@@ -7,16 +7,24 @@ answers_hard = ["answer 1-hard", "answer 2-hard"]
 
 
 def difficulty_selector():
-    question = input("What diffacuty would you like to play at ?").strip()
-    if question == "easy":
-        return [questions_easy, answers_easy]
-    elif question == "normal":
-        return [questions_normal, answers_normal]
-    elif question == "hard":
-        return [questions_hard, answers_hard]
-    else:
-        print("Pleas enter easy,normal or hard")
+    valid = False
+    while not valid:
+        question = input("What diffacuty would you like to play at ?").strip()
+        if question == "easy":
+            return [questions_easy, answers_easy]
+        elif question == "normal":
+            return [questions_normal, answers_normal]
+        elif question == "hard":
+            return [questions_hard, answers_hard]
+        else:
+            print("Pleas enter easy,normal or hard")
+            print()
 
-diffaculty = difficulty_selector()
-print(diffaculty[0])
-print(diffaculty[1])
+
+i = 0
+while i < 3:
+    questions = difficulty_selector()
+    print(questions[0])
+    print(questions[1])
+    print()
+    i + 1
