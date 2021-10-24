@@ -33,7 +33,7 @@ def instructions():
     print(" ")
 
 
-instructions_yn = yes_no_checker("Have you answered this quiz before ? ")
+show_instructions = yes_no_checker("Would you like to see the instructions ?")
 
-if instructions_yn == "no":
+if show_instructions == "yes":
     instructions()

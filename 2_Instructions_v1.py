@@ -23,9 +23,9 @@ def yes_no_checker(question):
                 print("yes or no are the only valid answers, you must enter yes or no")
 
 
-instructions = yes_no_checker("Have you answered this quiz before ? ")
+show_instructions = yes_no_checker("Would you like to see the instructions ?")
 
-if instructions == "no":
+if show_instructions == "yes":
     print("Welcome to the Quiz")
     print("You will have 30 seconds to answer each question")
     print("you must answer in english")
