@@ -20,7 +20,7 @@ def yes_no_checker(question):
 
         # The else statement outputs an error asking the user to pleas enter yes or no
         else:
-            # The invalid counter counts how many invalid answers have been entered if this reaches 5 then it prints a...
+            # The invalid counter counts how many invalid answers have been entered if this reaches 5 then it prints a..
             # -different error message It does this with 2 an if statement which is just bellow the variable
             invalid_counter += 1
             if invalid_counter != 5:
@@ -39,13 +39,13 @@ def instructions():
     print(" ")
 
 
-def answer_checker(input_answer, answer, time_limit):
-    if input_answer == answer and time_to_answer < time_limit:
+def answer_checker(input_answer, answer_fn, time_limit):
+    if input_answer == answer_fn and time_to_answer < time_limit:
         return ["Congratulations that is correct", True]
-    elif input_answer == answer and time_to_answer > time_limit:
+    elif input_answer == answer_fn and time_to_answer > time_limit:
         return ["That is correct however you ran out of time", False]
     else:
-        return ["Sorry that is incorrect", False]
+        return ["Sorry that is incorrect. The answer was {}".format(answer_fn), False]
 
 
 # A function that decorates text that is imputed when it is called
@@ -97,12 +97,12 @@ def time_keeper():
 # Main program
 
 # question and answer bank with all the questions and answers for each difficulty
-questions_easy = ["question 1-easy", "question 2-easy"]
-answers_easy = ["answer 1-easy", "answer 2-easy"]
-questions_normal = ["question 1-normal", "question 2-normal"]
-answers_normal = ["answer 1-normal", "answer 2-normal"]
-questions_hard = ["question 1-hard", "question 2-hard"]
-answers_hard = ["answer 1-hard", "answer 2-hard"]
+questions_easy = ["What is the name of the 2nd story DLC ?","What is the name of the bay located in the north west corner of ragnarok ?","What is the name of the giant carnivore that spawns in the highlands of ragnarok ?","In which biome is the red obelisk located next to on ragnarok ?","what type/element of wyvern applies torpo with its breath weapon ?","Which meat is most effective for taming carnivores ?","Which berry is most effective for taming herbivores ?","How many metal ingots are required for an industrial forge ?","Which ark has malfunctioned causing searing heat ?","What is the full name for the dino that can run for short bursts after being in contact with water ?"]
+answers_easy = ["aberration","viking Bay","giganotosaurus","redwoods","poison","mutton","mejoberry","2500","scorched earth","spinosaurus"]
+questions_normal = ["What is the full name of the dino shortened to Trike ?"," What is the weapon used to fire darts called ?"," what resources are castoroides dams raided for ?"," What is the full name for the dino that is commonly used for metal farming ?", "What is the full name for the dino that is commonly used for stone farming ?","What is the full name of the dino that can have a platform saddle and can fly ?"," what is the highest quality of equipment available ?"," How much metal ore is required to craft 1 metal ingot in a forge"," How many creatures start their name with dire ?"," Which creature can protect you from bees if you ride it ?","Do triceratops get buff against carnivores larger than it ?"]
+answers_normal = ["triceratops","longneck rifle","cementing paste","ankylosaurus","doedicurus","Quetzal","ascendant","2","2","dire bear","yes"]
+questions_hard = ["What is the name of the main antagonist ?","how many difficulties are there for each boss ?","What is the name of the hardest boss difficulty ?"," Does ragnarok have explorer notes ?","does genesis part 2 have explorer notes ?","At what level can you make Tranquilizer Dart’s ?","how many metal ingots does a Tranquilizer Dart cost in total (including the rifle ammo) ?","can wyverns carry 2 creatures at once ?","How many hexagons do 20 pieces of crystal cost ?","does the chem bench require a generator to power it ?"]
+answers_hard = ["rockwell","3","alpha","no","yes","62","3","no","230","yes"]
 
 # asks the user if they would like to see the instructions then calls the yes no checker to determine there answer
 show_instructions = yes_no_checker("Would you like to see the instructions ?")
@@ -131,7 +131,7 @@ for i in questions_hard:
     answer = None
     time_to_answer = 0
     random_question_and_answer = randomizer()
-    answer = input("\nThe question is {} \n :".format(random_question_and_answer[0]))
+    answer = input("\n{} \n :".format(random_question_and_answer[0]))
     timer_reset = True
     correct = answer_checker(answer, random_question_and_answer[1], 15)
     if correct[1]:
@@ -142,6 +142,6 @@ for i in questions_hard:
     questions.remove(random_question_and_answer[0])
     answers.remove(random_question_and_answer[1])
 
-print("Thank you for playing this is the end of the quiz your scored {} out of {} or {}%".format(score,
+print("\nThank you for playing this is the end of the quiz your scored {} out of {} or {}%".format(score,
                                                                                                  unmodified_num_of_questions,
                                                                                                  100 / unmodified_num_of_questions * score))

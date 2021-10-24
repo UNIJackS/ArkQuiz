@@ -6,7 +6,7 @@ answer = None
 
 
 # A function that is used to print the time reminders even if an input is asked
-def check():
+def timer():
     timer = 0
     while timer < 39 and answer is None:
         time.sleep(1)
@@ -23,10 +23,11 @@ def check():
             print("\n"*20)
 
 # calls the check function to print time reminders
-Thread(target=check).start()
+Thread(target=timer).start()
 
 # asks the user a question then waits for a response
 answer = input("Input something: ")
 
 if answer == "nine":
     print("correct")
+

@@ -4,7 +4,7 @@ from threading import Thread
 answer = None
 
 
-def check():
+def timer():
     time.sleep(2)
     if answer is not None:
         return
@@ -22,7 +22,7 @@ def check():
             count_down -= 1
             print("{} seconds left".format(count_down))
 
-Thread(target=check).start()
+Thread(target=timer).start()
 
 answer = input("Input something: ")
 

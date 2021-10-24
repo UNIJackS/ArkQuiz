@@ -6,25 +6,19 @@ questions_hard = ["question 1-hard", "question 2-hard"]
 answers_hard = ["answer 1-hard", "answer 2-hard"]
 
 
-def difficulty_selector():
-    valid = False
-    while not valid:
-        question = input("What diffacuty would you like to play at ?").strip()
-        if question == "easy":
-            return [questions_easy, answers_easy]
-        elif question == "normal":
-            return [questions_normal, answers_normal]
-        elif question == "hard":
-            return [questions_hard, answers_hard]
-        else:
-            print("Pleas enter easy,normal or hard")
-            print()
-
-
-i = 0
-while i < 3:
-    questions = difficulty_selector()
-    print(questions[0])
-    print(questions[1])
+question = input("What diffacuty would you like to play at ?").strip()
+if question == "easy":
+    print(questions_easy)
+    print(answers_easy)
+elif question == "normal":
+    print(questions_normal)
+    print(answers_normal)
+elif question == "hard":
+    print(questions_hard)
+    print(answers_hard)
+else:
+    print("Pleas enter easy,normal or hard")
     print()
-    i + 1
+
+
+

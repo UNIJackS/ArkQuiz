@@ -23,7 +23,9 @@ def yes_no_checker(question):
                 print("yes or no are the only valid answers, you must enter yes or no")
 
 
+# instructions function. It will print the instructions when called
 def instructions():
+    # print statements that print the instructions
     print(" ")
     print("Welcome to the Quiz")
     print("You will have 30 seconds to answer each question")
@@ -33,7 +35,8 @@ def instructions():
     print(" ")
 
 
+# sets the show_instructions variable as weather you would like to see the instructions through the yes no checker
 show_instructions = yes_no_checker("Would you like to see the instructions ?")
-
+# checks if the yes_no checker returned a yes and if so it calls the instructions function
 if show_instructions == "yes":
     instructions()

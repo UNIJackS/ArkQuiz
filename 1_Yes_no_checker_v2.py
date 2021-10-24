@@ -21,3 +21,5 @@ while loop:
         else:
             print("yes or no are the only valid answers, you must enter yes or no")
             invalid_counter = 0
+
+
