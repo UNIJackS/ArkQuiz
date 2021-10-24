@@ -1,6 +1,5 @@
 from threading import Thread
 import time
-import os
 
 answer = None
 
@@ -25,7 +24,6 @@ def timer():
             print("\nTimes up")
         if timer == 38:
             print("\n" * 20)
-            os._exit(1)
 
 
 ask_question = Thread(target=question_asker)
