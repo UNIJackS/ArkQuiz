@@ -1,11 +1,9 @@
-time_to_answer = int(input("how long did it take to answer in seconds (this is just to test)"))
-def answer_checkcer(input_answer, answer, time_limit):
-    if input_answer == answer and time_to_answer < time_limit:
-        return ["Congratulations that is correct",True]
-    elif input_answer == answer and time_to_answer > time_limit:
-        return ["That is correct however you ran out of time",False]
+
+def answer_checkcer(input_answer, answer):
+    if input_answer == answer:
+        return True
     else:
-        return ["Sorry that is incorrect",False]
+        return False
 
 
 score = 0
@@ -15,9 +13,10 @@ questions = ["question 1", "question 2", "question 3", ]
 
 for i in questions:
     answer = input(questions[question_num])
-    correct = answer_checkcer(answer, question_num,15)
-    if correct[1]:
-        print(correct[0])
+    correct = answer_checkcer(answer, question_num)
+    if correct:
+        print("correct")
     else:
-        print(correct[0])
+        print("incorrect")
     question_num += 1
+
