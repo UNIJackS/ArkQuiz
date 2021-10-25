@@ -12,3 +12,5 @@ def randomizer():
 random_question_answer = randomizer()
 print(random_question_answer[0])
 print(random_question_answer[1])
+
+

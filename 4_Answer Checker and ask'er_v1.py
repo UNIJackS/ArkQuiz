@@ -14,3 +14,4 @@ for i in questions:
         print("you have {} point".format(score))
     else:
         print("you have {} points".format(score))
+
