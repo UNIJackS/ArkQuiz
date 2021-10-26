@@ -5,6 +5,7 @@ answers_normal = ["answer 1-normal", "answer 2-normal"]
 questions_hard = ["question 1-hard", "question 2-hard"]
 answers_hard = ["answer 1-hard", "answer 2-hard"]
 
+# Code for the difficulty selector that when called asks the user whitch diffaculty they would like to play on then
 
 def difficulty_selector():
     valid = False
