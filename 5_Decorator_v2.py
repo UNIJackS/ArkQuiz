@@ -9,6 +9,11 @@ def decorator(input_text, num_of_deco, deco_type):
 
 
 # Calls the decorator function and decorates the text in this case Test_text with 2 & symbols on either side, above and bellow
-decorator("Test_text", 2, "&")
+decorator("Test_text 1", 4, "*")
+
+decorator("Test_text 2", 7, "!")
+
+decorator("Test_text 3", 2, "&")
+
 
 

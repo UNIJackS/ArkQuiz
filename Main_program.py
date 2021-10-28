@@ -29,23 +29,27 @@ def yes_no_checker(question):
                 print("yes or no are the only valid answers, you must enter yes or no")
 
 
+# instructions function. It will print the instructions when called
 def instructions():
+    # print statements that print the instructions
     print(" ")
     print("Welcome to the Quiz")
-    print("You will have 15 seconds to answer each question")
+    print("You will have 30 seconds to answer each question")
     print("Answers will only be accepted in English")
     print("Capitols and spaces are not necessary but if included will not void your answer")
     print("Enjoy the quiz")
     print(" ")
 
 
-def answer_checker(input_answer, answer_fn, time_limit):
-    if input_answer == answer_fn and time_to_answer < time_limit:
+# code for the answer checker function. This compares 2 strings and a time the outputs a ture or false
+def answer_checker(input_answer, answer, time_limit):
+    # an if statement that compares the input answer to the answer and to the time limit to the time to answer
+    if input_answer == answer and time_to_answer < time_limit:
         return ["Congratulations that is correct", True]
-    elif input_answer == answer_fn and time_to_answer > time_limit:
+    elif input_answer == answer and time_to_answer > time_limit:
         return ["That is correct however you ran out of time", False]
     else:
-        return ["Sorry that is incorrect. The answer was {}".format(answer_fn), False]
+        return ["Sorry that is incorrect", False]
 
 
 # A function that decorates text that is imputed when it is called
@@ -69,23 +73,28 @@ def randomizer():
     return [questions[question_num], answers[question_num]]
 
 
+# Code for the difficulty selector that when called asks the user which difficulty they would like to play on then
 def difficulty_selector():
     valid = False
     while not valid:
-        question = input("What difficulty would you like to play at easy, normal or hard ?").strip()
-        if question == "easy":
+        # An input statement that asks the user what difficulty they want to play at
+        difficultly_input = input("What difficulty would you like to play at ?").strip()
+        # An If statement that checks if the user inputted either easy,normal or hard and if not prints an error message
+        if difficultly_input == "easy":
             return [questions_easy, answers_easy]
-        elif question == "normal":
+        elif difficultly_input == "normal":
             return [questions_normal, answers_normal]
-        elif question == "hard":
+        elif difficultly_input == "hard":
             return [questions_hard, answers_hard]
         else:
             print("Pleas enter easy,normal or hard")
             print()
 
 
+# sets the time keeper function
 def time_keeper():
-    while answer is None:
+    # Loops the time keeper function while there is no answer
+    while answer == None:
         global time_to_answer, timer_reset
         if timer_reset:
             time_to_answer = 0
@@ -94,15 +103,51 @@ def time_keeper():
         time_to_answer += 1
 
 
+# A function that decorates text that is imputed when it is called
+def decorator(input_text, num_of_deco, deco_type):
+    # A print statement that prints the number of the chosen symbol twice plus 1 for every character in the text imputed
+    print(deco_type * num_of_deco * 2 + deco_type * len(input_text))
+    # A print statement that prints the number of the chosen symbols on either side of the input text and the input text
+    print(deco_type * num_of_deco + input_text + deco_type * num_of_deco)
+    # A print statement that prints the number of the chosen symbol twice plus 1 for every character in the text imputed
+    print(deco_type * num_of_deco * 2 + deco_type * len(input_text))
+
+
 # Main program
 
 # question and answer bank with all the questions and answers for each difficulty
-questions_easy = ["What is the name of the 2nd story DLC ?","What is the name of the bay located in the north west corner of ragnarok ?","What is the name of the giant carnivore that spawns in the highlands of ragnarok ?","In which biome is the red obelisk located next to on ragnarok ?","what type/element of wyvern applies torpo with its breath weapon ?","Which meat is most effective for taming carnivores ?","Which berry is most effective for taming herbivores ?","How many metal ingots are required for an industrial forge ?","Which ark has malfunctioned causing searing heat ?","What is the full name for the dino that can run for short bursts after being in contact with water ?"]
-answers_easy = ["aberration","viking Bay","giganotosaurus","redwoods","poison","mutton","mejoberry","2500","scorched earth","spinosaurus"]
-questions_normal = ["What is the full name of the dino shortened to Trike ?"," What is the weapon used to fire darts called ?"," what resources are castoroides dams raided for ?"," What is the full name for the dino that is commonly used for metal farming ?", "What is the full name for the dino that is commonly used for stone farming ?","What is the full name of the dino that can have a platform saddle and can fly ?"," what is the highest quality of equipment available ?"," How much metal ore is required to craft 1 metal ingot in a forge"," How many creatures start their name with dire ?"," Which creature can protect you from bees if you ride it ?","Do triceratops get buff against carnivores larger than it ?"]
-answers_normal = ["triceratops","longneck rifle","cementing paste","ankylosaurus","doedicurus","Quetzal","ascendant","2","2","dire bear","yes"]
-questions_hard = ["What is the name of the main antagonist ?","how many difficulties are there for each boss ?","What is the name of the hardest boss difficulty ?"," Does ragnarok have explorer notes ?","does genesis part 2 have explorer notes ?","At what level can you make Tranquilizer Dart’s ?","how many metal ingots does a Tranquilizer Dart cost in total (including the rifle ammo) ?","can wyverns carry 2 creatures at once ?","How many hexagons do 20 pieces of crystal cost ?","does the chem bench require a generator to power it ?"]
-answers_hard = ["rockwell","3","alpha","no","yes","3","62","no","230","yes"]
+questions_easy = ["What is the name of the 2nd story DLC ?",
+                  "What is the name of the bay located in the north west corner of ragnarok ?",
+                  "What is the name of the giant carnivore that spawns in the highlands of ragnarok ?",
+                  "In which biome is the red obelisk located next to on ragnarok ?",
+                  "what type/element of wyvern applies torpo with its breath weapon ?",
+                  "Which meat is most effective for taming carnivores ?",
+                  "Which berry is most effective for taming herbivores ?",
+                  "How many metal ingots are required for an industrial forge ?",
+                  "Which ark has malfunctioned causing searing heat ?",
+                  "What is the full name for the dino that can run for short bursts after being in contact with water ?"]
+answers_easy = ["aberration", "viking Bay", "giganotosaurus", "redwoods", "poison", "mutton", "mejoberry", "2500",
+                "scorched earth", "spinosaurus"]
+questions_normal = ["What is the full name of the dino shortened to Trike ?",
+                    " What is the weapon used to fire darts called ?",
+                    " what resources are castoroides dams raided for ?",
+                    " What is the full name for the dino that is commonly used for metal farming ?",
+                    "What is the full name for the dino that is commonly used for stone farming ?",
+                    "What is the full name of the dino that can have a platform saddle and can fly ?",
+                    " what is the highest quality of equipment available ?",
+                    " How much metal ore is required to craft 1 metal ingot in a forge",
+                    " How many creatures start their name with dire ?",
+                    " Which creature can protect you from bees if you ride it ?",
+                    "Do triceratops get buff against carnivores larger than it ?"]
+answers_normal = ["triceratops", "longneck rifle", "cementing paste", "ankylosaurus", "doedicurus", "Quetzal",
+                  "ascendant", "2", "2", "dire bear", "yes"]
+questions_hard = ["What is the name of the main antagonist ?", "how many difficulties are there for each boss ?",
+                  "What is the name of the hardest boss difficulty ?", " Does ragnarok have explorer notes ?",
+                  "does genesis part 2 have explorer notes ?", "At what level can you make Tranquilizer Dart’s ?",
+                  "how many metal ingots does a Tranquilizer Dart cost in total (including the rifle ammo) ?",
+                  "can wyverns carry 2 creatures at once ?", "How many hexagons do 20 pieces of crystal cost ?",
+                  "does the chem bench require a generator to power it ?"]
+answers_hard = ["rockwell", "3", "alpha", "no", "yes", "3", "62", "no", "230", "yes"]
 
 # asks the user if they would like to see the instructions then calls the yes no checker to determine there answer
 show_instructions = yes_no_checker("Would you like to see the instructions ?")
@@ -143,5 +188,5 @@ for i in questions_hard:
     answers.remove(random_question_and_answer[1])
 
 print("\nThank you for playing this is the end of the quiz your scored {} out of {} or {}%".format(score,
-                                                                                                 unmodified_num_of_questions,
-                                                                                                 100 / unmodified_num_of_questions * score))
+                                                                                                   unmodified_num_of_questions,
+                                                                                                   100 / unmodified_num_of_questions * score))
