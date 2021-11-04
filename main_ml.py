@@ -8,12 +8,14 @@ questions_hard = ["What is the name of the main antagonist ?", "how many difficu
                   "Coes the chem bench require a generator to power it ?"]
 answers_hard = ["rockwell", "3", "alpha", "no", "yes", "62", "3", "no", "230", "yes"]
 
-i = len(questions_hard)
-while i > 0:
-    num_of_questions = len(questions_hard) - 1
-    question_num = random.randint(0, num_of_questions)
-    print(questions_hard[question_num])
-    print(answers_hard[question_num])
-    questions_hard.remove(questions_hard[question_num])
-    answers_hard.remove(answers_hard[question_num])
-    i -= 1
+asked=[]
+
+select = random.randint(0,9)
+for i in questions_hard:
+    if questions_hard in asked:
+        continue
+    else:
+        print(questions_hard[select])
+        print(answers_hard[select])
+
+

@@ -42,14 +42,14 @@ def instructions():
 
 
 # code for the answer checker function. This compares 2 strings and a time the outputs a ture or false
-def answer_checker(input_answer, answer, time_limit):
+def answer_checker(input_answer, correct_answer, time_limit):
     # an if statement that compares the input answer to the answer and to the time limit to the time to answer
-    if input_answer == answer and time_to_answer < time_limit:
+    if input_answer == correct_answer and time_to_answer < time_limit:
         return ["Congratulations that is correct", True]
-    elif input_answer == answer and time_to_answer > time_limit:
+    elif input_answer == correct_answer and time_to_answer > time_limit:
         return ["That is correct however you ran out of time", False]
     else:
-        return ["Sorry that is incorrect", False]
+        return ["Sorry that is incorrect. The answer was {}".format(correct_answer), False]
 
 
 # A function that decorates text that is imputed when it is called
@@ -64,13 +64,18 @@ def decorator(input_text, num_of_deco, deco_type):
 
 # randomizer function that returns a random question and its answer from the questions and answers lists.
 def randomizer():
-    # sets a variable (num_of_questions) as the amount of questions in the variable questions - 1
-    num_of_questions = len(questions) - 1
-    # sets the question number randomly from 0 to the amount of question's in questions - 1
-    question_num = random.randint(0, num_of_questions)
+    while not valid_num:
+        # sets a variable (num_of_questions) as the amount of questions in the variable questions - 1
+        num_of_questions = len(questions) - 1
+        # sets the question number randomly from 0 to the amount of question's in questions - 1
+        question_num = random.randint(0, num_of_questions)
 
-    # returns the random question and answer that as picked
-    return [questions[question_num], answers[question_num]]
+        # Checks if the random number selected is in the list of numbers that have already been used
+        if question_num not in numbers_used:
+            # adds the number selected to the used numbers list so that it can not be used again
+            numbers_used.append(question_num)
+            # returns the randomly selected question and answer
+            return [questions[question_num], answers[question_num]]
 
 
 # Code for the difficulty selector that when called asks the user which difficulty they would like to play on then
@@ -147,11 +152,13 @@ questions_hard = ["What is the name of the main antagonist ?", "how many difficu
                   "how many metal ingots does a Tranquilizer Dart cost in total (including the rifle ammo) ?",
                   "can wyverns carry 2 creatures at once ?", "How many hexagons do 20 pieces of crystal cost ?",
                   "does the chem bench require a generator to power it ?"]
-answers_hard = ["rockwell", "3", "alpha", "no", "yes", "3", "62", "no", "230", "yes"]
+answers_hard = ["rockwell", "3", "alpha", "no", "yes", "62", "3", "no", "230", "yes"]
 
 # asks the user if they would like to see the instructions then calls the yes no checker to determine there answer
 show_instructions = yes_no_checker("Would you like to see the instructions ?")
 
+valid_num = False
+numbers_used = []
 # checks if the user entered yes and if so it calls the instructions function
 if show_instructions == "yes":
     instructions()
@@ -167,14 +174,16 @@ time_keeper_function = Thread(target=time_keeper)
 # sets a separate variable as the number of questions because the num of questions variable gets changed and i need the
 # original number for the final print statement
 unmodified_num_of_questions = len(questions)
+num_of_questiosn_for_loop = len(questions)
 
 answer = None
 timer_reset = False
 score = 0
 time_keeper_function.start()
-for i in questions_hard:
+while num_of_questiosn_for_loop > 0:
     answer = None
     time_to_answer = 0
+    #
     random_question_and_answer = randomizer()
     answer = input("\n{} \n :".format(random_question_and_answer[0]))
     timer_reset = True
@@ -184,8 +193,7 @@ for i in questions_hard:
         score += 1
     else:
         print(correct[0])
-    questions.remove(random_question_and_answer[0])
-    answers.remove(random_question_and_answer[1])
+    num_of_questiosn_for_loop -= 1
 
 print("\nThank you for playing this is the end of the quiz your scored {} out of {} or {}%".format(score,
                                                                                                    unmodified_num_of_questions,
