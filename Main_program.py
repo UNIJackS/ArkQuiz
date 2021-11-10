@@ -52,16 +52,6 @@ def answer_checker(input_answer, correct_answer, time_limit):
         return ["Sorry that is incorrect. The answer was {}".format(correct_answer), False]
 
 
-# A function that decorates text that is imputed when it is called
-def decorator(input_text, num_of_deco, deco_type):
-    # A print statement that prints the number of the chosen symbol twice plus 1 for every character in the text imputed
-    print(deco_type * num_of_deco * 2 + deco_type * len(input_text))
-    # A print statement that prints the number of the chosen symbols on either side of the input text and the input text
-    print(deco_type * num_of_deco + input_text + deco_type * num_of_deco)
-    # A print statement that prints the number of the chosen symbol twice plus 1 for every character in the text imputed
-    print(deco_type * num_of_deco * 2 + deco_type * len(input_text))
-
-
 # randomizer function that returns a random question and its answer from the questions and answers lists.
 def randomizer():
     while not valid_num:
@@ -83,7 +73,7 @@ def difficulty_selector():
     valid = False
     while not valid:
         # An input statement that asks the user what difficulty they want to play at
-        difficultly_input = input("What difficulty would you like to play at ?").strip()
+        difficultly_input = input("\nWhat difficulty would you like to play at ?\n :").strip()
         # An If statement that checks if the user inputted either easy,normal or hard and if not prints an error message
         if difficultly_input == "easy":
             return [questions_easy, answers_easy]
@@ -110,12 +100,17 @@ def time_keeper():
 
 # A function that decorates text that is imputed when it is called
 def decorator(input_text, num_of_deco, deco_type):
-    # A print statement that prints the number of the chosen symbol twice plus 1 for every character in the text imputed
-    print(deco_type * num_of_deco * 2 + deco_type * len(input_text))
-    # A print statement that prints the number of the chosen symbols on either side of the input text and the input text
-    print(deco_type * num_of_deco + input_text + deco_type * num_of_deco)
-    # A print statement that prints the number of the chosen symbol twice plus 1 for every character in the text imputed
-    print(deco_type * num_of_deco * 2 + deco_type * len(input_text))
+    # code that sets a variable in this case line1 as the number of the chosen symbol twice plus 1 for every character in
+    # the text imputed
+    line1 = (deco_type * num_of_deco * 2 + deco_type * len(input_text))
+    # code that sets a variable in this case line2 as the number of the chosen symbols on either side of the input text
+    # and the input text
+    line2 = (deco_type * num_of_deco + input_text + deco_type * num_of_deco)
+    # code that sets a variable in this case line3 as the number of the chosen symbol twice plus 1 for every character
+    # in the text imputed
+    line3 = (deco_type * num_of_deco * 2 + deco_type * len(input_text))
+    # returns the 3 lines in a list with \n to put them on separate lines when printed
+    return line1 + "\n" + line2 +"\n" + line3
 
 
 # Main program
@@ -155,7 +150,7 @@ questions_hard = ["What is the name of the main antagonist ?", "how many difficu
 answers_hard = ["rockwell", "3", "alpha", "no", "yes", "62", "3", "no", "230", "yes"]
 
 # asks the user if they would like to see the instructions then calls the yes no checker to determine there answer
-show_instructions = yes_no_checker("Would you like to see the instructions ?")
+show_instructions = yes_no_checker("Would you like to see the instructions ?\n :")
 
 valid_num = False
 numbers_used = []
@@ -174,13 +169,13 @@ time_keeper_function = Thread(target=time_keeper)
 # sets a separate variable as the number of questions because the num of questions variable gets changed and i need the
 # original number for the final print statement
 unmodified_num_of_questions = len(questions)
-num_of_questiosn_for_loop = len(questions)
+num_of_questions_for_loop = len(questions)
 
 answer = None
 timer_reset = False
 score = 0
 time_keeper_function.start()
-while num_of_questiosn_for_loop > 0:
+while num_of_questions_for_loop > 0:
     answer = None
     time_to_answer = 0
     #
@@ -189,11 +184,11 @@ while num_of_questiosn_for_loop > 0:
     timer_reset = True
     correct = answer_checker(answer, random_question_and_answer[1], 15)
     if correct[1]:
-        print(correct[0])
+        print(decorator(correct[0],2,"!"))
         score += 1
     else:
-        print(correct[0])
-    num_of_questiosn_for_loop -= 1
+        print(decorator(correct[0],2,"?"))
+    num_of_questions_for_loop -= 1
 
 print("\nThank you for playing this is the end of the quiz your scored {} out of {} or {}%".format(score,
                                                                                                    unmodified_num_of_questions,
