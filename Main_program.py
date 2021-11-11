@@ -89,7 +89,7 @@ def difficulty_selector():
 # sets the time keeper function
 def time_keeper():
     # Loops the time keeper function while there is no answer
-    while answer == None:
+    while answer is None:
         global time_to_answer, timer_reset
         if timer_reset:
             time_to_answer = 0
@@ -110,7 +110,7 @@ def decorator(input_text, num_of_deco, deco_type):
     # in the text imputed
     line3 = (deco_type * num_of_deco * 2 + deco_type * len(input_text))
     # returns the 3 lines in a list with \n to put them on separate lines when printed
-    return line1 + "\n" + line2 +"\n" + line3
+    return "{}\n{}\n{}".format(line1,line2,line3)
 
 
 # Main program
@@ -149,6 +149,11 @@ questions_hard = ["What is the name of the main antagonist ?", "how many difficu
                   "does the chem bench require a generator to power it ?"]
 answers_hard = ["rockwell", "3", "alpha", "no", "yes", "62", "3", "no", "230", "yes"]
 
+# sets the initial values for the main program
+answer = None
+timer_reset = False
+score = 0
+
 # asks the user if they would like to see the instructions then calls the yes no checker to determine there answer
 show_instructions = yes_no_checker("Would you like to see the instructions ?\n :")
 
@@ -163,33 +168,40 @@ questions_and_answers = difficulty_selector()
 questions = questions_and_answers[0]
 answers = questions_and_answers[1]
 
-# sets the time keeper function
-time_keeper_function = Thread(target=time_keeper)
-
 # sets a separate variable as the number of questions because the num of questions variable gets changed and i need the
 # original number for the final print statement
 unmodified_num_of_questions = len(questions)
 num_of_questions_for_loop = len(questions)
 
-answer = None
-timer_reset = False
-score = 0
-time_keeper_function.start()
+# starts the time keeper function a separate thread so it can run parallel with the main program. This is so it is not
+# interrupted by the input statements
+Thread(target=time_keeper).start()
+
+# The main loop that loops the functions that are responsible for time keeping, question asking, score keeping etc
 while num_of_questions_for_loop > 0:
     answer = None
     time_to_answer = 0
-    #
+    # calls the random question and answer generator and then sets the list of the 2 as a random_question_and_answer
     random_question_and_answer = randomizer()
+    # sets the answer variable as an input with the randomly generated question which is then decorated by the decorator
     answer = input("\n{} \n :".format(random_question_and_answer[0]))
+    # sets the global varable of timer_reset as true which resets the time in the time keeper function
     timer_reset = True
+    # compares the answer inputted before to the matching randomly selected answer and the time to answer from the
+    # time keeper function to the time limit of 15 seconds
     correct = answer_checker(answer, random_question_and_answer[1], 15)
+    # checks if the second variable in the correct list is True and if so it then it prints the second correct variable
+    # which is decorated by the decorator function
     if correct[1]:
-        print(decorator(correct[0],2,"!"))
+        print(decorator(correct[0], 2, "!"))
         score += 1
+    # prints the second correct value if the first correct value is not True which is also decorated by the decorator
+    # function
     else:
-        print(decorator(correct[0],2,"?"))
+        print(decorator(correct[0], 2, "?"))
+    # takes one off the num_of_questions_for_loop varable this allows the loop to stop and not loop forever
     num_of_questions_for_loop -= 1
-
+# prints a thank you for playing and some stats about how well you did
 print("\nThank you for playing this is the end of the quiz your scored {} out of {} or {}%".format(score,
                                                                                                    unmodified_num_of_questions,
                                                                                                    100 / unmodified_num_of_questions * score))

@@ -10,7 +10,7 @@ def decorator(input_text, num_of_deco, deco_type):
     # in the text imputed
     line3 = (deco_type * num_of_deco * 2 + deco_type * len(input_text))
     # returns the 3 lines in a list with \n to put them on separate lines when printed
-    return line1 + "\n" + line2 +"\n" + line3
+    return "{}\n{}\n{}".format(line1,line2,line3)
 
 
 # Calls the decorator function and decorates the text in this case Test_text with 2 & symbols on either side, above and bellow
